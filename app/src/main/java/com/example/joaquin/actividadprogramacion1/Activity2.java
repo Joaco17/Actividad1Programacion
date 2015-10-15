@@ -7,32 +7,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Activity2 extends Activity {
     final int SUBACTIVITY_2=2;
     private Button botonContinuar;
     private TextView textoSaludo;
+    private EditText cajaEdad;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
         //Definición de objetos
         textoSaludo = (TextView) findViewById(R.id.textoSaludo);
+        cajaEdad = (EditText) findViewById(R.id.cajaEdad);
         botonContinuar = (Button) findViewById(R.id.botonContinuar);
-        botonContinuar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                startActivityForResult(i,SUBACTIVITY_2);;
-            }
-        });
-        recogerExtras();
+        gestionSaludo();
     }
 
-    public void recogerExtras(){
-
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -53,6 +47,24 @@ public class Activity2 extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void accionBotonContinuar(View v){
+        botonContinuar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= getIntent();
+                String resultadoEdad=cajaEdad.getText().toString();
+                intent.putExtra("resultado", resultadoEdad);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
+    }
+    public void gestionSaludo(){
+        Bundle bundle = getIntent().getExtras();
+        textoSaludo.setText("Hola "+ bundle.getString("sexo")+bundle.getString("nombre")+". Indica tu edad:");
+
     }
 
 }

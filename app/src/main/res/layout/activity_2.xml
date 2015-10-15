@@ -14,7 +14,8 @@
         android:id="@+id/textoSaludo"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:textColor="#010101" />
 
     <EditText
         android:layout_width="100dp"
@@ -30,6 +31,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Edad"
         android:id="@+id/textViewEdad"
+        android:layout_marginTop="24dp"
         android:layout_below="@+id/textoSaludo"
         android:layout_alignParentStart="true" />
 
@@ -38,6 +40,7 @@
         android:layout_height="wrap_content"
         android:text="Continuar"
         android:id="@+id/botonContinuar"
+        android:onClick="accionBotonContinuar"
         android:layout_below="@+id/cajaEdad"
         android:layout_alignParentStart="true"
         android:layout_marginTop="23dp" />
